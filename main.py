@@ -119,13 +119,23 @@ def plot_signals(original, denoised, fs=128, window_name = ""):
     plt.title("Segnale Originale e Denoised")
 
     # Subplot 2: Spettro del segnale
-    f1, Pxx1 = compute_spectrum(original, fs)
+    # f1, Pxx1 = compute_spectrum(original, fs)
+    #f2, Pxx2 = compute_spectrum(denoised, fs)
+    #plt.subplot(3, 1, 2)
+    #plt.semilogy(f1, Pxx1, label="Noised")
+    #plt.semilogy(f2, Pxx2, label="Denoised", linestyle="dashed")
+    #plt.legend()
+    #plt.title("Spettro del Segnale")ù
+
+    # Subplot 2: Spettro del segnale
+    f1, Pxx1 = compute_spectrum(medfilt(original, kernel_size=5), fs)
     f2, Pxx2 = compute_spectrum(denoised, fs)
     plt.subplot(3, 1, 2)
-    plt.semilogy(f1, Pxx1, label="Noised")
-    plt.semilogy(f2, Pxx2, label="Denoised", linestyle="dashed")
+    plt.semilogy(f1, Pxx1, label="Mediano")
+    plt.semilogy(f2, Pxx2, label="RN", linestyle="dashed")
     plt.legend()
     plt.title("Spettro del Segnale")
+
 
     # Subplot 3: Filtro Mediano
     #plt.subplot(3, 1, 3)
