@@ -113,6 +113,8 @@ def plot_signals(original, denoised, fs=128, window_name = ""):
     plt.subplot(3, 1, 1)
     plt.plot(original, label="Noised", alpha=0.7)
     plt.plot(denoised, label="Denoised", linestyle="dashed")
+    plt.plot(medfilt(original, kernel_size=5), label="Filtro mediano")
+    plt
     plt.legend()
     plt.title("Segnale Originale e Denoised")
 
@@ -126,13 +128,18 @@ def plot_signals(original, denoised, fs=128, window_name = ""):
     plt.title("Spettro del Segnale")
 
     # Subplot 3: Filtro Mediano
+    #plt.subplot(3, 1, 3)
+    #plt.plot(medfilt(original, kernel_size=5), label="Noised Filtered")
+    #plt.plot(medfilt(denoised, kernel_size=5), label="Denoised Filtered")
+    #plt.legend()
+    #plt.title("Filtro Mediano")
+
+    # Subplot 4: Filtro Mediano
     plt.subplot(3, 1, 3)
-    #plt.plot(original, label="Noised", alpha=0.7)
-    #plt.plot(denoised, label="Denoised")
-    plt.plot(medfilt(original, kernel_size=5), label="Noised Filtered")
-    plt.plot(medfilt(denoised, kernel_size=5), label="Denoised Filtered")
+    plt.plot(denoised, label="Filtro rete neurale")
+    plt.plot(medfilt(original, kernel_size=5), label="Filtro mediano")
     plt.legend()
-    plt.title("Filtro Mediano")
+    plt.title("Filtro Mediano VS Filtro RN")
 
     plt.tight_layout()
     plt.show()
